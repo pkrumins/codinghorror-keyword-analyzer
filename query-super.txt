@@ -1,0 +1,16 @@
+SELECT
+ COUNT(query) c,
+ (ROUND(COUNT(query)/(1.0*(SELECT COUNT(*) FROM queries)),4)*100) || '%',
+ ROUND(100*(COUNT(query)/(1.0*(SELECT SUM(t.c) FROM (SELECT COUNT(query) c, query FROM queries GROUP BY query ORDER BY c DESC limit 20) t)))/(SELECT
+ count(query)/(1.0*(select sum(t.c) FROM (select count(query) c, query from queries group by query order by c desc limit 15) t))
+FROM queries
+GROUP BY query
+ORDER BY count(query) DESC
+LIMIT 1
+)),
+ query
+FROM queries
+GROUP BY query
+ORDER BY c DESC
+LIMIT 20;
+

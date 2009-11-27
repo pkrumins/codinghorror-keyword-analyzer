@@ -1,0 +1,13 @@
+--
+-- see readme.txt for more details
+--
+
+CREATE TABLE queries (
+    id        INTEGER PRIMARY KEY,
+    query     TEXT,
+    unix_date INTEGER,
+    human_date TEXT
+    );
+
+CREATE UNIQUE INDEX unique_query_date ON queries (query, unix_date);
+

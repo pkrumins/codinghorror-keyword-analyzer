@@ -1,0 +1,9 @@
+--
+-- see readme.txt for more details
+--
+
+SELECT COUNT(query) c, query
+FROM queries
+GROUP BY query
+ORDER BY c DESC
+LIMIT 20;

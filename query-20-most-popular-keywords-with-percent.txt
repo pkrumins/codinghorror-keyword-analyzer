@@ -1,0 +1,13 @@
+--
+-- see readme.txt for more information
+--
+
+SELECT
+    COUNT(query) c,
+    (ROUND(COUNT(query)/(1.0*(SELECT COUNT(*) FROM queries)),3)*100) || '%',
+    query
+FROM queries
+GROUP BY query
+ORDER BY c DESC
+LIMIT 20;
+
